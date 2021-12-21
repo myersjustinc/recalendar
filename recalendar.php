@@ -60,8 +60,6 @@ class ReCalendar {
 		$this->generate_week_overview( $week );
 
 		$this->generate_days_per_week( $week, $year_end );
-
-		$this->generate_week_retrospective( $week );
 	}
 
 	private function generate_month_overview( \DateTimeImmutable $month ) : void {

@@ -43,7 +43,6 @@ class CalendarGenerator extends Generator {
 						echo "<th scope=\"col\"><span>$day_name</span></th>";
 					}
 ?>
-					<th scope="col" class="calendar__week-retrospective"><span>Re</span></th>
 				</tr>
 			</thead>
 			<tbody>
@@ -93,9 +92,6 @@ class CalendarGenerator extends Generator {
 					$day_number = $week_day->format( 'j' );
 					echo "<td class=\"$css_classes\"><a href=\"#$day_entry_anchor\">$day_number</a></td>\n";
 				}
-
-				$week_retrospective_anchor = self::get_week_retrospective_anchor( $week );
-				echo "<td class=\"calendar__week-retrospective\"><a href=\"#$week_retrospective_anchor\">R</a></td>";
 
 				echo '</tr>';
 			}
