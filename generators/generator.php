@@ -68,7 +68,7 @@ abstract class Generator {
 	}
 
 	protected static function get_week_number( \DateTimeImmutable $week ) : int {
-		return (int) $week->modify( 'thursday this week' )->format( 'W' );
+		return (int) $week->modify( 'thursday next week' )->format( 'W' );
 	}
 
 	protected static function get_matching_special_items( \DateTimeImmutable $date, array $special_dates ) : array {

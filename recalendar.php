@@ -38,7 +38,7 @@ class ReCalendar {
 		$this->add_page();
 		$this->append_html( $year_overview_generator->generate() );
 
-		$start = $start->modify( 'monday this week' );
+		$start = $start->modify( 'monday this week' )->modify( '1 day ago' );
 		$interval = new \DateInterval( 'P1W' );
 		$period = new \DatePeriod( $start, $interval, $end );
 
@@ -85,7 +85,7 @@ class ReCalendar {
 	}
 
 	private function generate_days_per_week( \DateTimeImmutable $week, \DateTimeImmutable $year_end ) : void {
-		$next_week = $week->modify( 'next week' );
+		$next_week = $week->modify( '+7 days' );
 		$week_period = new \DatePeriod( $week, new \DateInterval( 'P1D' ), $next_week );
 		foreach( $week_period as $week_day ) {
 			if ( (int) $week_day->format( 'j' ) === 1 && $week_day < $year_end ) {
@@ -114,7 +114,7 @@ class ReCalendar {
 	}
 
 	private static function get_week_number( \DateTimeImmutable $week ) : int {
-		return (int) $week->modify( 'thursday this week' )->format( 'W' );
+		return (int) $week->modify( 'thursday next week' )->format( 'W' );
 	}
 
 	private function add_page() : void {

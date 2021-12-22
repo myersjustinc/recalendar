@@ -33,13 +33,13 @@ class Config {
 			// Used in the small calendar in the upper right corner of most pages
 			// Please try to use a 2 character abbreviations to save space on the page
 			self::DAY_NAMES_SHORT => [
+				'Su',
 				'Mo',
 				'Tu',
 				'We',
 				'Th',
 				'Fr',
 				'Sa',
-				'Su',
 			],
 			// Items for each page type
 			// The format is: [ NUMBER OF LINES, NAME (optional) ]

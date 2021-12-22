@@ -24,11 +24,11 @@ class WeekOverviewGenerator extends Generator {
 
 	protected function generate_content() : void {
 		$calendar_html = $this->calendar_generator->generate();
-		$week_start = strftime( '%d %B', $this->week->modify( 'monday this week' )->getTimestamp() );
-		$week_end = strftime( '%d %B', $this->week->modify( 'sunday this week' )->getTimestamp() );
+		$week_start = strftime( '%d %B', $this->week->getTimestamp() );
+		$week_end = strftime( '%d %B', $this->week->modify( '+6 days' )->getTimestamp() );
 
-		$previous_week_anchor = self::get_week_overview_anchor( $this->week->modify( 'previous week' ) );
-		$next_week_anchor = self::get_week_overview_anchor( $this->week->modify( 'next week' ) );
+		$previous_week_anchor = self::get_week_overview_anchor( $this->week->modify( '7 days ago' ) );
+		$next_week_anchor = self::get_week_overview_anchor( $this->week->modify( '+7 days' ) );
 ?>
 		<table width="100%">
 			<tr>
@@ -44,10 +44,10 @@ class WeekOverviewGenerator extends Generator {
 		</table>
 		<table class="content-box" height="100%">
 <?php
-		$month_start_week_number = self::get_week_number( $this->week->modify( 'first day of this month' )->modify( 'monday this week' ) );
-		$month_end_week_number = self::get_week_number( $this->week->modify( 'last day of this month' )->modify( 'monday this week' ) );
+		$month_start_week_number = self::get_week_number( $this->week->modify( 'first day of this month' )->modify( 'monday this week' )->modify( '1 day ago' ) );
+		$month_end_week_number = self::get_week_number( $this->week->modify( 'last day of this month' )->modify( 'monday this week' )->modify( '1 day ago' ) );
 		$day_entry_height = self::get_day_entry_height( $month_start_week_number, $month_end_week_number );
-		$next_week = $this->week->modify( 'next week' );
+		$next_week = $this->week->modify( '+7 days' );
 		$week_period = new \DatePeriod( $this->week, new \DateInterval( 'P1D' ), $next_week );
 		$week_days = [];
 		foreach ( $week_period as $week_day ) {

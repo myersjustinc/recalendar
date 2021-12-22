@@ -47,7 +47,10 @@ class CalendarGenerator extends Generator {
 			</thead>
 			<tbody>
 <?php
-			$starting_week = $this->month->modify( 'monday this week' );
+			$starting_week = $this->month->modify( 'monday this week' )->modify( '1 day ago' );
+                        if ( $starting_week < $this->month && $starting_week->modify( '+6 days' ) < $this->month ) {
+                                $starting_week = $starting_week->modify( '+7 days' );
+                        }
 			$end_week = $this->month->modify( 'last day of this month' );
 			$week_period = new \DatePeriod( $starting_week, new \DateInterval( 'P1W' ), $end_week );
 			$special_dates = $this->config->get( Config::SPECIAL_DATES );
@@ -61,8 +64,8 @@ class CalendarGenerator extends Generator {
 
 				$week_overview_anchor = self::get_week_overview_anchor( $week );
 				echo "<td class=\"calendar__week-number\"><a href=\"#$week_overview_anchor\">$week_number</a></td>";
-				$start_of_week = $week->modify( 'monday this week' );
-				$next_week = $start_of_week->modify( 'next week' );
+				$start_of_week = $week->modify( 'sunday this week' );
+				$next_week = $start_of_week->modify( '+7 days' );
 				$week_period = new \DatePeriod( $start_of_week, new \DateInterval( 'P1D' ), $next_week );
 
 				foreach( $week_period as $week_day ) {
