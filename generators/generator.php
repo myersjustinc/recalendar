@@ -71,7 +71,11 @@ abstract class Generator {
 		return (int) $week->modify( 'thursday next week' )->format( 'W' );
 	}
 
-	protected static function get_matching_special_items( \DateTimeImmutable $date, array $special_dates ) : array {
+	protected function get_matching_special_items( \DateTimeImmutable $date, array $special_dates ) : array {
+                $target_year = $this->config->get( Config::YEAR );
+		if ( (int) $date->format( 'Y' ) != $target_year ) {
+		        return [];
+                }
 		return $special_dates[ $date->format( 'd-m' ) ] ?? [];
 	}
 
