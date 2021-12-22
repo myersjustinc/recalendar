@@ -99,23 +99,6 @@ class WeekOverviewGenerator extends Generator {
 	}
 
 	private static function get_day_entry_height( int $start_week_number, int $end_week_number ) : int {
-		if ( $start_week_number > $end_week_number ) {
-			// Edge case when the Jan 1st falls on Week 53 of the previous year
-			// See 2020/2021
-			$start_week_number = 0;
-		}
-
-		$number_of_weeks_in_month = $end_week_number - $start_week_number + 1;
-		switch ( $number_of_weeks_in_month ) {
-			case 6:
-				return 208;
-
-			case 4:
-				return 221;
-
-			case 5:
-			default:
-				return 215;
-		}
+                return 208;
 	}
 }
