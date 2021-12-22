@@ -45,19 +45,19 @@ $fontData = $defaultFontConfig['fontdata'];
 
 $mpdf = new \Mpdf\Mpdf( [
     'fontDir' => array_merge( $fontDirs, [
-        __DIR__ . '/fonts/Lato',
+        __DIR__ . '/fonts/sourcesans',
     ] ),
     'fontdata' => $fontData + [
-        'lato' => [
-            'R' => 'Lato-Regular.ttf',
-            'I' => 'Lato-Italic.ttf',
-            'B' => 'Lato-Bold.ttf',
-            'BI' => 'Lato-BoldItalic.ttf',
+        'sourcesans' => [
+            'R' => 'SourceSans3-Regular.ttf',
+            'I' => 'SourceSans3-It.ttf',
+            'B' => 'SourceSans3-Bold.ttf',
+            'BI' => 'SourceSans3-BoldIt.ttf',
         ],
     ],
 	'mode' => 'utf-8',
 	'format' => $config->get( \ReCalendar\Config::FORMAT ),
-	'default_font' => 'lato',
+	'default_font' => 'sourcesans',
 	'margin_left' => 0,
 	'margin_right' => 0,
 	'margin_top' => 0,
